@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosa_roja🌹</title>
+
+    <!-- ✅ Conexión al CSS -->
+    <link rel="stylesheet" href="Anima.css">
+</head>
+
+<body>
+
+    <h1 class="titulo">
+        Esta Flor Es Para Ti...💝🫶
+    </h1>
+
+    <h2 id="frase"></h2>
+
+    <div class="flower__wrapper">
+        <div class="corazones"></div>
+
+        <div class="flower__sparkles">
+            <div class="flower__sparkle"></div>
+            <div class="flower__sparkle"></div>
+            <div class="flower__sparkle"></div>
+            <div class="flower__sparkle"></div>
+            <div class="flower__sparkle"></div>
+            <div class="flower__sparkle"></div>
+            <div class="flower__sparkle"></div>
+            <div class="flower__sparkle"></div>
+        </div>
+
+        <div class="flower">
+            <img class="imagen" src="https://i.pinimg.com/originals/4d/80/56/4d80564c89721f9a75cd1df36e42a467.gif">
+        </div>
+    </div>
+
+    <audio id="musica" src="Bad Bunny - BAILE INoLVIDABLE - Letra.mp3"></audio>
+
+    <script>
+        const frases = [
+            "Amarte es mi parte favorita del día ❤️",
+            "Tu sonrisa ilumina todo lo que soy ✨",
+            "Contigo todo es más bonito 🌸",
+            "Eres mi razón, mi paz y mi todo 🫶",
+            "Si tú estás, todo vale la pena 💝",
+            "Mi corazón late más fuerte por ti 💝",
+            "Eres mi lugar favorito en el mundo 🌷",
+            "No sabía qué era el amor… hasta que te conocí 💝"
+        ];
+
+        let i = 0;
+        const fraseEl = document.getElementById('frase');
+
+        fraseEl.textContent = frases[0];
+
+        setInterval(() => {
+            i = (i + 1) % frases.length;
+            fraseEl.style.opacity = 0;
+            setTimeout(() => {
+                fraseEl.textContent = frases[i];
+                fraseEl.style.opacity = 1;
+            }, 300);
+        }, 3000);
+
+        document.addEventListener('click', () => {
+            const audio = document.getElementById('musica');
+            if (audio && audio.paused) {
+                audio.play().catch(() => {});
+            }
+        }, { once: false });
+
+        document.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+
+            const flor = document.createElement('div');
+            flor.className = 'mini-flor';
+            flor.style.left = `${e.clientX}px`;
+            flor.style.top = `${e.clientY}px`;
+            document.body.appendChild(flor);
+            setTimeout(() => flor.remove(), 1000);
+        });
+    </script>
+
+</body>
+</html>
